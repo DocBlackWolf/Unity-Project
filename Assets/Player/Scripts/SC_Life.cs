@@ -51,12 +51,4 @@ public class SC_Life : MonoBehaviour
             Debug.LogWarning("No SC_LevelReset script found!");
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Check for the "Meta" tag collision
-        if (!collision.gameObject.CompareTag("Meta")) { return; }
-
-        Debug.Log("GANASTE");
-    }
 }

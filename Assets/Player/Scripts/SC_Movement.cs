@@ -4,64 +4,113 @@ using UnityEngine;
 
 public class SC_Movement : MonoBehaviour
 {
-    [Header("Configuracion")]
-    [SerializeField] float velocidad = 5f;
-    [SerializeField] AudioClip walkingSound; 
-    private AudioSource audioSource; 
+    [Header("Movement Settings")]
+    [SerializeField] protected float speed = 5f;
+    [SerializeField] private int latchTime = 3;
+    [SerializeField] private int maxLatches = 3;
 
-    private Vector2 direccion;
-    private Rigidbody2D miRigidbody2D;
-    private Animator miAnimator; 
-    private SpriteRenderer miSpriteRenderer;
+    public Vector2 Direction;
+
+    private Rigidbody2D myRigidbody2D;
+
+    [Header("Jump Settings")]
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private CircleCollider2D bodyCollider;
+    [SerializeField] private Collider2D feetCollider;
+
+    public bool CanJump { get; private set; } = true;
+    public bool Jumping { get; protected set; } = false;
+    public bool Latching { get; protected set; } = false;
+    public bool CanLatch { get; private set; } = false;
+
+    private int currentLatches;
 
     private void OnEnable()
     {
-        miRigidbody2D = GetComponent<Rigidbody2D>();
-        miAnimator = GetComponent<Animator>(); 
-        miSpriteRenderer = GetComponent<SpriteRenderer>(); 
-        audioSource = GetComponent<AudioSource>(); 
+        myRigidbody2D = GetComponent<Rigidbody2D>();
+        currentLatches = maxLatches;
     }
 
     private void Update()
     {
-        direccion = Vector2.zero;
+        Direction = Vector2.zero;
 
- 
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if (!Latching)
         {
-            direccion.x = 1f;
-            miAnimator.SetFloat("Velocity", 2f);
-            miSpriteRenderer.flipX = false;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-        {
-            direccion.x = -1f;
-            miAnimator.SetFloat("Velocity", 2f);
-            miSpriteRenderer.flipX = true;
-        }
-        else
-        {
-            miAnimator.SetFloat("Velocity", 0f);
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+                Direction.x = 1f;
+            else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+                Direction.x = -1f;
         }
 
-      
-        if (direccion.x != 0 && !audioSource.isPlaying)
+        CanJump = IsGrounded();
+
+        if (Input.GetKeyDown(KeyCode.Space) && CanJump)
+            Jumping = true;
+
+        if (Input.GetKeyDown(KeyCode.E) && CanLatch && !CanJump && currentLatches > 0)
         {
-            audioSource.clip = walkingSound; 
-            audioSource.Play(); 
+            Latching = true;
+            currentLatches--;
+            StartCoroutine(Latch());
         }
-        else if (direccion.x == 0 && audioSource.isPlaying)
+
+        if (Input.GetKeyDown(KeyCode.Space) && Latching)
         {
-            audioSource.Stop(); 
+            Jumping = true;
+            Latching = false;
+            StopAllCoroutines();
+            myRigidbody2D.gravityScale = 1f;
         }
     }
 
     private void FixedUpdate()
     {
-    
-        if (direccion.x != 0)
+        if (Direction.x != 0 && !Latching)
+            myRigidbody2D.AddForce(Direction * speed);
+
+        if (Jumping)
         {
-            miRigidbody2D.AddForce(direccion * velocidad);
+            myRigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            Jumping = false;
         }
+
+        if (Latching)
+            myRigidbody2D.velocity = Vector2.zero;
+
+        if (IsGrounded())
+        {
+            Jumping = false;
+            Latching = false;
+            currentLatches = maxLatches;
+        }
+
+        if (!IsGrounded() && !Latching)
+        {
+            // Jump logic
+        }
+
+        CanLatch = IsWalled();
+    }
+
+    public bool IsGrounded()
+    {
+        return feetCollider.IsTouchingLayers(groundLayer);
+    }
+
+    private bool IsWalled()
+    {
+        return bodyCollider.IsTouchingLayers(groundLayer);
+    }
+
+    private IEnumerator Latch()
+    {
+        myRigidbody2D.gravityScale = 0f;
+        myRigidbody2D.velocity = Vector2.zero;
+        yield return new WaitForSeconds(latchTime);
+        myRigidbody2D.gravityScale = 1f;
+        Latching = false;
+        CanLatch = false;
     }
 }
