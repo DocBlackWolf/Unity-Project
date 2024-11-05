@@ -24,6 +24,14 @@ public class SC_LevelLoader : MonoBehaviour
 
     public void NextLevel()
     {
+        StartCoroutine(LoadLevel());
+    }
+
+    private IEnumerator LoadLevel()
+    {
+
+
+        yield return new WaitForSeconds(1);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

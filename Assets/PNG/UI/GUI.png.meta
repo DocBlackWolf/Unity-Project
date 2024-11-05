@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0bb7f82cb2125af46966cea1f58ebf79
+guid: fce64c58df35579409b22529562c2f29
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,55 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Time & weather_0
+      name: GUI_BLOCK
       rect:
         serializedVersion: 2
-        x: 150
-        y: 321
-        width: 31
-        height: 10
-      alignment: 9
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fba2b5ad78ebb6a46833ba8a9cb3c94b
-      internalID: -1907189517
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Time & weather_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 270
-        width: 48
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 1}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 27d5435d569331a42a3c1d0177e6ca0a
-      internalID: -1658930886
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Time & weather_2
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 222
-        width: 48
-        height: 48
+        x: 2
+        y: 226
+        width: 44
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,41 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 367d0825562990e419d565eaef22b708
-      internalID: -723633263
+      spriteID: 0e4dbbbbf3a9c3a4ea9d34a1ef13fb78
+      internalID: -740392793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Time & weather_3
+      name: button_sml
       rect:
         serializedVersion: 2
-        x: 144
-        y: 161
-        width: 47
-        height: 10
-      alignment: 9
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3095c1bd9ebfc14a925b086ce19711d
-      internalID: -300040457
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Time & weather_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 222
-        width: 48
-        height: 48
+        x: 113
+        y: 209
+        width: 30
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cd25af0060b6484ebb1a28ea1e8f435
-      internalID: -1317167034
+      spriteID: e82e2a09b9b91a14590dfd392925f768
+      internalID: -1483676482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Time & weather_5
+      name: button_sml_f
       rect:
         serializedVersion: 2
-        x: 112
-        y: 222
-        width: 48
-        height: 48
+        x: 113
+        y: 193
+        width: 30
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,8 +166,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 808c4aad00f6c984bb880fa94522e4bf
-      internalID: 1574830723
+      spriteID: 01dd2be522d7c594c8385992bc854d89
+      internalID: 1349483461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_sml_f_2
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 177
+        width: 30
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac79424b859ed4429811f01bb2c1a34
+      internalID: 1617172832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_f_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 177
+        width: 46
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5565867508e1efc41b2cefc9b0ae03c0
+      internalID: -1496767433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_f
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 193
+        width: 46
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86f34de7bc09c4044b9f5da66a194a93
+      internalID: 288153681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 209
+        width: 46
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42ce0e99577b763479c23b690430e0a8
+      internalID: 376137138
       vertices: []
       indices: 
       edges: []
@@ -246,13 +267,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Time & weather_0: -1907189517
-      Time & weather_1: -1658930886
-      Time & weather_2: -723633263
-      Time & weather_3: -300040457
-      Time & weather_4: -1317167034
-      Time & weather_5: 1574830723
-      Time & weather_6: -2076041896
+      GUI_BLOCK: -740392793
+      Mana_Ov: -82438832
+      button: 376137138
+      button_f: 288153681
+      button_f_2: -1496767433
+      button_sml: -1483676482
+      button_sml_f: 1349483461
+      button_sml_f_2: 1617172832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

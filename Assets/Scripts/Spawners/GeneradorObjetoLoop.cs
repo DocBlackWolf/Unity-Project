@@ -14,13 +14,25 @@ public class GeneradorObjetoLoop : MonoBehaviour
     [Range(0.5f, 5f)]
     private float tiempoIntervalo;
 
-    void Start()
+    // New rotation fields
+    [SerializeField]
+    private Vector3 rotationEulerAngles;
+
+
+    void GenerarObjetoLoop()
+    {
+        // Use rotationEulerAngles to set the rotation of the spawned object
+        Quaternion rotation = Quaternion.Euler(rotationEulerAngles);
+        Instantiate(objetoPrefab, transform.position, rotation);
+    }
+
+    private void OnBecameVisible()
     {
         InvokeRepeating(nameof(GenerarObjetoLoop), tiempoEspera, tiempoIntervalo);
     }
 
-    void GenerarObjetoLoop()
+    private void OnBecameInvisible()
     {
-        Instantiate(objetoPrefab, transform.position, Quaternion.identity);
+        CancelInvoke(nameof(GenerarObjetoLoop));
     }
 }
