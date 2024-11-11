@@ -13,12 +13,13 @@ GameObject:
   - component: {fileID: 2752327246459578955}
   - component: {fileID: 5644799667472942179}
   - component: {fileID: 6787858288121507058}
-  - component: {fileID: 5467227624347958192}
-  - component: {fileID: 4253559131273863841}
   - component: {fileID: 1773542510827994524}
   - component: {fileID: 7440412456748682622}
   - component: {fileID: 7351970992803583059}
+  - component: {fileID: 4253559131273863841}
+  - component: {fileID: 5467227624347958192}
   - component: {fileID: 7794768433270954110}
+  - component: {fileID: 8888156050240372607}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -187,42 +188,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.12081963, y: 0.030000001}
   m_EdgeRadius: 0
---- !u!114 &5467227624347958192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370621882599807433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0f3ae1c568ea404fbd76c066bb2e556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  latchTime: 3
-  maxLatches: 2
-  speedReductionFactor: 0.9
-  Direction: {x: 0, y: 0}
-  jumpForce: 8
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  bodyCollider: {fileID: 7440412456748682622}
-  feetCollider: {fileID: 6787858288121507058}
---- !u!114 &4253559131273863841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370621882599807433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56403a5f0e69da340bdeccdc25e3ef7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vida: 5
 --- !u!70 &1773542510827994524
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -389,6 +354,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4253559131273863841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370621882599807433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56403a5f0e69da340bdeccdc25e3ef7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida: 5
+--- !u!114 &5467227624347958192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370621882599807433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f3ae1c568ea404fbd76c066bb2e556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  latchTime: 3
+  maxLatches: 2
+  speedReductionFactor: 0.9
+  Direction: {x: 0, y: 0}
+  jumpForce: 8
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  bodyCollider: {fileID: 7440412456748682622}
+  feetCollider: {fileID: 6787858288121507058}
 --- !u!114 &7794768433270954110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +402,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b94cda7ccf86647be1c4638d665b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8888156050240372607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370621882599807433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10357d39c3a32740ae666a7ea5fd7b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectibles: []
 --- !u!1 &8476855537461376169
 GameObject:
   m_ObjectHideFlags: 0

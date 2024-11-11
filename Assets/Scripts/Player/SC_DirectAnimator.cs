@@ -26,10 +26,7 @@ public class SC_DirectAnimator : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     void ChangeAnimationState(string newState)
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7920916982020854625}
   - component: {fileID: 903735221328978094}
   - component: {fileID: 5599589088822477591}
-  - component: {fileID: 7059520701763101927}
+  - component: {fileID: 5844323400786704727}
   m_Layer: 0
   m_Name: WorldHandler
   m_TagString: Untagged
@@ -59,28 +59,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afedc948b69d04f46bac499c7d4d1726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
---- !u!95 &7059520701763101927
-Animator:
-  serializedVersion: 5
+--- !u!114 &5844323400786704727
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141773620796222799}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 99a1fbb6775a10244a9eef7cfde74de7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb38a93244dc6df40ba04a54cb0c7764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miAnimator: {fileID: 2550533142064413125}
+  loader: {fileID: 5599589088822477591}
 --- !u!1001 &8511250401525405226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -158,6 +150,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d4107629944d845a202509a7d8025f, type: 3}
+--- !u!95 &2550533142064413125 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6159615065727086575, guid: 96d4107629944d845a202509a7d8025f, type: 3}
+  m_PrefabInstance: {fileID: 8511250401525405226}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2644991783961278558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5956836407086689908, guid: 96d4107629944d845a202509a7d8025f, type: 3}

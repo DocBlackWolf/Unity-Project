@@ -7,7 +7,10 @@ public class SC_MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0) 
+        {
         SceneManager.LoadSceneAsync(1);
+        }
     }
 
     public void CloseGame()

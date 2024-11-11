@@ -330,11 +330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2693923642160694892, guid: ea725b5356bd38641888d8520955440b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.73
+      value: 1.523
       objectReference: {fileID: 0}
     - target: {fileID: 2693923642160694892, guid: ea725b5356bd38641888d8520955440b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -41.89
+      value: -42.254
       objectReference: {fileID: 0}
     - target: {fileID: 2693923642160694892, guid: ea725b5356bd38641888d8520955440b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -550,6 +550,10 @@ PrefabInstance:
     - target: {fileID: 1141773620796222799, guid: 0b3e936c31fd0e743bdcdf5f92114a55, type: 3}
       propertyPath: m_Name
       value: WorldHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498421369019163363, guid: 0b3e936c31fd0e743bdcdf5f92114a55, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7920916982020854625, guid: 0b3e936c31fd0e743bdcdf5f92114a55, type: 3}
       propertyPath: m_LocalPosition.x
