@@ -44,12 +44,12 @@ public class SC_DirectAnimator : MonoBehaviour
     {
 
 
-            if (!life_Script.EstasVivo())
+            if (!life_Script.IsAlive())
             {
                 ChangeAnimationState(PLAYER_DEATH);
             }
 
-        if (life_Script.EstasVivo())
+        if (life_Script.IsAlive())
         {
 
             if (movementScript.Direction.x != 0 && !movementScript.Latching && movementScript.IsGrounded())

@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCooldown: 0
   playerInside: 0
-  damageAmount: -5
+  damageAmount: 5
   cooldownTime: 1
   damageDelay: 0.6
   graceTime: 0.2

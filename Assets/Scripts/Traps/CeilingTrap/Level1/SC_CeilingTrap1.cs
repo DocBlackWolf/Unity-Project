@@ -46,27 +46,25 @@ public class SC_CeilingTrap1 : MonoBehaviour
         // Wait for the damage delay
         yield return new WaitForSeconds(damageDelay);
 
-        isCooldown = true;
-
-        yield return new WaitForSeconds(graceTime);
-        // If the player is still inside, apply the damage
+        // Apply damage only if the player is still inside the trap
         if (playerInRange != null && playerInside)
         {
-            SC_Life playerLife = playerInRange.GetComponent<SC_Life>();
+            Debug.Log("Triggering damage from ceiling trap");  // Debug message to verify trap triggers
 
-            if (playerLife != null)
-            {
-                playerLife.ModificarVida(damageAmount); // Apply damage
-            }
+            // Trigger the damage event
+            SC_Life.DamagePlayer(damageAmount);
         }
 
-        // Regardless of player position, start cooldown
-        
+        // Start cooldown immediately after applying damage
+        isCooldown = true;
 
-        // Wait for cooldown time
+        // Wait for grace time before resetting the cooldown
+        yield return new WaitForSeconds(graceTime);
+
+        // After grace time, start cooldown and prevent multiple hits during this time
         yield return new WaitForSeconds(cooldownTime);
 
-        // Reset cooldown
+        // Reset cooldown after waiting for cooldown time
         isCooldown = false;
     }
 }

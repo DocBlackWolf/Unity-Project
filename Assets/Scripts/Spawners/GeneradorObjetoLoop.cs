@@ -14,16 +14,25 @@ public class GeneradorObjetoLoop : MonoBehaviour
     [Range(0.5f, 5f)]
     private float tiempoIntervalo;
 
-    // New rotation fields
-    [SerializeField]
-    private Vector3 rotationEulerAngles;
+    [SerializeField] private Vector3 rotationEulerAngles;
 
+    // New rocket-specific fields
+    [SerializeField] private Vector2 rocketDirection = Vector2.right;
+    [SerializeField] private float rocketSpeed = 5f;
 
     void GenerarObjetoLoop()
     {
-        // Use rotationEulerAngles to set the rotation of the spawned object
+        // Instantiate the prefab with the specified rotation
         Quaternion rotation = Quaternion.Euler(rotationEulerAngles);
-        Instantiate(objetoPrefab, transform.position, rotation);
+        GameObject nuevoObjeto = Instantiate(objetoPrefab, transform.position, rotation);
+
+        // Try to configure SC_Rocket if it's attached to the prefab
+        SC_Rocket rocketScript = nuevoObjeto.GetComponent<SC_Rocket>();
+        if (rocketScript != null)
+        {
+            rocketScript.movementDirection = rocketDirection; // Set direction
+            rocketScript.speed = rocketSpeed;                 // Set speed
+        }
     }
 
     private void OnBecameVisible()

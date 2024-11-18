@@ -39,7 +39,7 @@ public class SC_Movement : MonoBehaviour
     {
         Direction = Vector2.zero;
 
-        if (!Latching && life_Script.EstasVivo())
+        if (!Latching && life_Script.IsAlive())
         {
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
                 Direction.x = 1f;
@@ -49,7 +49,7 @@ public class SC_Movement : MonoBehaviour
 
         CanJump = IsGrounded();
 
-        if (Input.GetKeyDown(KeyCode.Space) && CanJump && life_Script.EstasVivo())
+        if (Input.GetKeyDown(KeyCode.Space) && CanJump && life_Script.IsAlive())
             Jumping = true;
 
         if (Input.GetKeyDown(KeyCode.E) && CanLatch && !CanJump && currentLatches > 0)

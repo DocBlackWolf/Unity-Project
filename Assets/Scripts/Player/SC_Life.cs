@@ -1,63 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System;
 
 public class SC_Life : MonoBehaviour
 {
-    [Header("Configuracion")]
-    [SerializeField] private float vida = 5f;  // Player's health
-    private bool hasDied = false;              // To ensure the script runs only once
+    [Header("Configuration")]
+    [SerializeField] private float health = 5f;
+    private bool hasDied = false;
+
+    // Event to notify when the player dies
+    public static event Action OnPlayerDied;
+
+    // Event to listen to for any damage source
+    public static event Action<float> OnPlayerDamaged;
+
+    private void OnEnable()
+    {
+        // Subscribe to the OnPlayerDamaged event
+        OnPlayerDamaged += ModifyHealth;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from the event when disabled
+        OnPlayerDamaged -= ModifyHealth;
+    }
 
     // Method to modify health
-    public void ModificarVida(float puntos)
+    public void ModifyHealth(float damage)
     {
-        // Update health
-        vida += puntos;
+        health -= damage;
+        Debug.Log("Player damage received: " + damage);
+        Debug.Log("Current HP: " + health);
 
-        // Print current health to the console
-        Debug.Log("Current HP: " + vida);
-
-        // Check if the player is still alive
-        if (!EstasVivo() && !hasDied)
+        if (!IsAlive() && !hasDied)
         {
-            // Execute death action only once
             TriggerDeath();
             hasDied = true;
         }
-
-        Debug.Log(EstasVivo());
     }
 
-    // Helper method to check if the player is alive
-    public bool EstasVivo()
+    public bool IsAlive()
     {
-        return vida > 0;
+        return health > 0;
     }
 
-    // Method triggered on death
     private void TriggerDeath()
     {
-        Debug.Log("HP reached 0! Resetting level.");
+        Debug.Log("Player has died!");
+        // Fire the OnPlayerDied event when the player dies
+        OnPlayerDied?.Invoke();
 
-        StartCoroutine(WaitAndResetLevel());
+        // Call the SC_LevelLoader instance to reset the level
+        SC_LevelLoader.instance.ResetLevel();
     }
 
-    private IEnumerator WaitAndResetLevel()
+    // This method can be called by any damage source to trigger the event
+    public static void DamagePlayer(float damageAmount)
     {
-        float waitTime = 2f;
-        yield return new WaitForSeconds(waitTime);
-
-        // Try to find the SC_LevelReset script and call ResetLevel
-        SC_LevelReset levelReset = FindObjectOfType<SC_LevelReset>();
-        if (levelReset != null)
-        {
-            levelReset.ResetLevel();
-        }
-        else
-        {
-            Debug.LogWarning("No SC_LevelReset script found!");
-        }
+        // Trigger the OnPlayerDamaged event
+        Debug.Log("Damage triggered: " + damageAmount); // Debug line to ensure it's triggered
+        OnPlayerDamaged?.Invoke(damageAmount);
     }
-
 }

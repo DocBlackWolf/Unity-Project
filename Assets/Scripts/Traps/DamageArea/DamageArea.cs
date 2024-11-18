@@ -1,14 +1,18 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class DamageArea : MonoBehaviour
 {
     [Header("Damage Configuration")]
-    public float damageAmount = 1f;   
-    public float damageInterval = 1f;   
-    public LayerMask playerLayer;       
-    private bool isDamaging = false;    
-    private Collider2D playerInRange;   
+    public float damageAmount = 1f;      // Amount of damage to apply
+    public float damageInterval = 1f;    // Time between damage applications
+    public LayerMask playerLayer;        // Layer mask to filter the player
+
+    private bool isDamaging = false;      // Flag to indicate if the player is in range for damage
+    private Collider2D playerInRange;     // Reference to the player in range
+
+    // Declare an event for player damage (no need to define this here, as it will be used from SC_Life)
 
     private IEnumerator DamagePlayer()
     {
@@ -16,19 +20,12 @@ public class DamageArea : MonoBehaviour
         {
             if (playerInRange != null)
             {
-                SC_Life playerLife = playerInRange.GetComponent<SC_Life>();
-                if (playerLife != null)
-                {
-                    playerLife.ModificarVida(-damageAmount); 
-                    Debug.Log("Player damaged: " + damageAmount);
-                }
-                else
-                {
-                    Debug.LogWarning("No SC_Life component found on player!");
-                }
+                // Use the DamagePlayer method from SC_Life to apply damage
+                SC_Life.DamagePlayer(damageAmount);  // Trigger damage through SC_Life
+                Debug.Log("Player damaged: " + damageAmount);
             }
 
-            // Wait for the specified damage interval before damaging again
+            // Wait for the specified damage interval before applying damage again
             yield return new WaitForSeconds(damageInterval);
         }
     }
@@ -59,5 +56,6 @@ public class DamageArea : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 1f);  // Visualize the damage area
     }
 }

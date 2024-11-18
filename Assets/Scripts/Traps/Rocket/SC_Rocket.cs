@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class SC_Rocket : MonoBehaviour
 {
-    [SerializeField] private Vector2 movementDirection = Vector2.right;
+    [SerializeField] public Vector2 movementDirection = Vector2.right;
 
-    [SerializeField] private float speed = 5f;
+    [SerializeField] public float speed = 5f;
 
     private Rigidbody2D rb;
 
