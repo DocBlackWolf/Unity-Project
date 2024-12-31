@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class SC_Movement : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -9,6 +11,7 @@ public class SC_Movement : MonoBehaviour
     [SerializeField] private int latchTime = 3;
     [SerializeField] private int maxLatches = 3;
     [SerializeField] private float speedReductionFactor = 0.3f;
+    [SerializeField] private float decelerationRate = 10f;
 
     public Vector2 Direction;
 
@@ -42,9 +45,17 @@ public class SC_Movement : MonoBehaviour
         if (!Latching && life_Script.IsAlive())
         {
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            {
                 Direction.x = 1f;
+            }
+
+
             else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            {
                 Direction.x = -1f;
+            }
+
+            else { Direction.x = 0f; }
         }
 
         CanJump = IsGrounded();
@@ -73,13 +84,49 @@ public class SC_Movement : MonoBehaviour
         if (Direction.x != 0 && !Latching)
             myRigidbody2D.AddForce(Direction * speed);
 
-        if (IsGrounded() && Direction.x == 0)
+        if (IsGrounded() && Mathf.Abs(Direction.x) == 0)
         {
-            
-            Vector2 reducedDirection = myRigidbody2D.velocity * speedReductionFactor;
+            Vector2 reducedDirection = myRigidbody2D.velocity;
+
+            reducedDirection.x *= speedReductionFactor;
+
+            if (Mathf.Abs(reducedDirection.x) < 0.1f)
+            {
+                reducedDirection.x = 0; // Stop reducing when velocity is small enough
+            }
 
             myRigidbody2D.velocity = reducedDirection;
         }
+
+
+        if (Direction.x == -1 && myRigidbody2D.velocity.x > 0)
+        {
+            // Reduce the horizontal velocity
+            Vector2 reducedDirection = myRigidbody2D.velocity;
+            reducedDirection.x -= decelerationRate * Time.deltaTime;
+
+            // Ensure we don't overshoot and reverse direction
+            if (reducedDirection.x < 0)
+                reducedDirection.x = 0;
+
+            myRigidbody2D.velocity = reducedDirection;
+        }
+        else if (Direction.x == 1 && myRigidbody2D.velocity.x < 0)
+        {
+            // Similarly for the other direction
+            Vector2 reducedDirection = myRigidbody2D.velocity;
+            reducedDirection.x += decelerationRate * Time.deltaTime;
+
+            if (reducedDirection.x > 0)
+                reducedDirection.x = 0;
+
+            myRigidbody2D.velocity = reducedDirection;
+        }
+
+
+
+        
+
 
 
         if (Jumping)

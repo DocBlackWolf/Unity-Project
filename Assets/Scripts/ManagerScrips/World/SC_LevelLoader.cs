@@ -13,25 +13,10 @@ public class SC_LevelLoader : MonoBehaviour
     public static event LevelLoadingHandler OnLevelLoading;
     public static event LevelLoadingHandler OnLevelLoaded;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy duplicate instances
-        }
-    }
-
     private void Update()
     {
         // Check for Escape key press to reset the game to scene index 0
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ResetGame();
-        }
+
     }
 
     public bool Loaded()

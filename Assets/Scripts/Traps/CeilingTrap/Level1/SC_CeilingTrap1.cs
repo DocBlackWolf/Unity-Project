@@ -46,6 +46,12 @@ public class SC_CeilingTrap1 : MonoBehaviour
         // Wait for the damage delay
         yield return new WaitForSeconds(damageDelay);
 
+        // Start cooldown immediately after applying damage
+        isCooldown = true;
+
+        // Wait for grace time before resetting the cooldown
+        yield return new WaitForSeconds(graceTime);
+
         // Apply damage only if the player is still inside the trap
         if (playerInRange != null && playerInside)
         {
@@ -54,12 +60,6 @@ public class SC_CeilingTrap1 : MonoBehaviour
             // Trigger the damage event
             SC_Life.DamagePlayer(damageAmount);
         }
-
-        // Start cooldown immediately after applying damage
-        isCooldown = true;
-
-        // Wait for grace time before resetting the cooldown
-        yield return new WaitForSeconds(graceTime);
 
         // After grace time, start cooldown and prevent multiple hits during this time
         yield return new WaitForSeconds(cooldownTime);

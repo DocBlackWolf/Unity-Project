@@ -469,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3934661053290811778, guid: ea72a89d8a1dd5b459d213bc8f0f1e94, type: 3}
       propertyPath: rotationEulerAngles.z
-      value: 90
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

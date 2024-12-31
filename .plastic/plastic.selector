@@ -1,4 +1,0 @@
-repository "FacuPosta_1@exequieldbaldini@cloud"
-  path "/"
-    br "/main"
-    co "/main"

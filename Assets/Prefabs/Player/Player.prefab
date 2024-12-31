@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56403a5f0e69da340bdeccdc25e3ef7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 5
+  health: 5
 --- !u!114 &5467227624347958192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,6 +383,7 @@ MonoBehaviour:
   latchTime: 3
   maxLatches: 2
   speedReductionFactor: 0.9
+  decelerationRate: 20
   Direction: {x: 0, y: 0}
   jumpForce: 8
   groundLayer:

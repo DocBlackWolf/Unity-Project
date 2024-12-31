@@ -1,68 +1,62 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class SoundHandler : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; }
+    [Serializable]
+    public class SoundEvent
+    {
+        public string EventName; // The name of the event
+        public AudioClip Clip;   // The audio clip to play
+    }
 
-    [Header("Audio Sources")]
-    [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource sfxSource;
+    [Header("Sound Events")]
+    [Tooltip("Add events here and associate each with an audio clip.")]
+    public List<SoundEvent> SoundEvents = new List<SoundEvent>(); // Expandable list in the Inspector
 
-    [Header("Volume Settings")]
-    [Range(0, 1)] public float musicVolume = 1f;
-    [Range(0, 1)] public float sfxVolume = 1f;
+    private Dictionary<string, AudioClip> soundDictionary;
+    private AudioSource audioSource;
 
     private void Awake()
     {
-        if (Instance == null)
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Keep the AudioManager persistent between scenes
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Create a dictionary for faster event lookups
+        soundDictionary = new Dictionary<string, AudioClip>();
+        foreach (var soundEvent in SoundEvents)
+        {
+            if (!string.IsNullOrEmpty(soundEvent.EventName) && soundEvent.Clip != null)
+            {
+                if (!soundDictionary.ContainsKey(soundEvent.EventName))
+                {
+                    soundDictionary.Add(soundEvent.EventName, soundEvent.Clip);
+                }
+                else
+                {
+                    Debug.LogWarning($"Duplicate EventName found: {soundEvent.EventName}. Only the first instance will be used.");
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Plays the sound associated with a given event.
+    /// </summary>
+    /// <param name="eventName">The name of the event to play.</param>
+    public void PlaySound(string eventName)
+    {
+        if (soundDictionary.TryGetValue(eventName, out var clip))
+        {
+            audioSource.PlayOneShot(clip);
         }
         else
         {
-            Destroy(gameObject);
+            Debug.LogWarning($"Sound event '{eventName}' not found!");
         }
-    }
-
-    private void Update()
-    {
-        // Update the volume in real-time if adjusted
-        musicSource.volume = musicVolume;
-        sfxSource.volume = sfxVolume;
-    }
-
-    /// <summary>
-    /// Plays a sound effect.
-    /// </summary>
-    /// <param name="clip">The AudioClip to play.</param>
-    public void PlaySFX(AudioClip clip)
-    {
-        if (clip != null)
-        {
-            sfxSource.PlayOneShot(clip, sfxVolume);
-        }
-    }
-
-    /// <summary>
-    /// Plays background music.
-    /// </summary>
-    /// <param name="clip">The AudioClip to loop as music.</param>
-    public void PlayMusic(AudioClip clip)
-    {
-        if (clip != null && musicSource.clip != clip)
-        {
-            musicSource.clip = clip;
-            musicSource.loop = true;
-            musicSource.Play();
-        }
-    }
-
-    /// <summary>
-    /// Stops the background music.
-    /// </summary>
-    public void StopMusic()
-    {
-        musicSource.Stop();
     }
 }
